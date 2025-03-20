@@ -7,12 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}Chatbot with OpenAI{% endblock %}</title>
 
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
     <!-- Favicon -->
     <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon" />
 
     <!-- Tailwind CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='mainpage.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='globalstyles.css') }}">
 </head>
 
 <body class="flex flex-col min-h-screen bg-gray-50 text-gray-900 font-sans">
@@ -36,7 +40,7 @@
     </main>
 
     <!-- Sticky Footer (no extra classes needed if main has flex-grow) -->
-    <footer class="bg-gray-800 text-gray-300 text-center p-2">
+    <footer class="bg-gray-800 text-white text-center p-2">
         © 2025 Chatbot - Built with Flask & OpenAI
     </footer>
 

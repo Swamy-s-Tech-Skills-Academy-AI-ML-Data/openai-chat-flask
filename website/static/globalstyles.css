@@ -1,7 +1,31 @@
 /* website/static/globalstyles.css */
+
 body {
     font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    /* Default weight */
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    /* Slightly bolder for headings */
+}
+
+p,
+span,
+button,
+input,
+textarea {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+}
+
 
 /* Custom scrollbar styling */
 #chat-box::-webkit-scrollbar {
