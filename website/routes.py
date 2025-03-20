@@ -1,3 +1,4 @@
+# File: routes.py
 from flask import Blueprint, render_template, request, jsonify, current_app
 import openai
 import os
@@ -11,10 +12,23 @@ if not openai_api_key:
     raise ValueError(
         "Missing OpenAI API Key. Set OPENAI_API_KEY in environment variables.")
 
+# Set the API key globally for the OpenAI package
+openai.api_key = openai_api_key
+
 
 @routes.route("/")
 def home():
-    return render_template("index.html")
+    return render_template("home.html")
+
+
+@routes.route("/stchatbot")
+def stchatbot():
+    return render_template("stchatbot.html")
+
+
+@routes.route("/history")
+def history():
+    return render_template("history.html")
 
 
 @routes.route("/api/chat", methods=["POST"])
