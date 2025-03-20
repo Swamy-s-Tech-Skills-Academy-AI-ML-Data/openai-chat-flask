@@ -1,10 +1,13 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
 {% block content %}
-<div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow">
-    <h2 class="text-xl font-semibold mb-4">Chat with Azure OpenAI 🤖</h2>
-    <div id="chat-box" class="bg-gray-100 h-64 overflow-y-auto p-4 rounded mb-4"></div>
-    <div class="flex space-x-2">
+<div class="max-w-8xl mx-auto bg-white p-6 rounded-lg shadow">
+
+    <h2 class="text-4xl font-semibold mb-4">Chat with Azure OpenAI 🤖</h2>
+    
+    <div id="chat-box" class="bg-gray-100 h-80 overflow-y-auto p-4 rounded mb-4 border border-gray-600"></div>
+    
+    <div class="flex space-x-2 h-40">
         <input id="user-input" type="text" placeholder="Type your message..."
             class="flex-grow border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:ring-blue-300" />
         <button id="send-btn"
