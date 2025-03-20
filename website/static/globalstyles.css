@@ -1,11 +1,12 @@
 /* website/static/globalstyles.css */
 
+/* Global font and basic styling */
 body {
     font-family: 'Inter', sans-serif;
     font-weight: 400;
-    /* Default weight */
 }
 
+/* Headings */
 h1,
 h2,
 h3,
@@ -14,9 +15,9 @@ h5,
 h6 {
     font-family: 'Inter', sans-serif;
     font-weight: 600;
-    /* Slightly bolder for headings */
 }
 
+/* Paragraphs, spans, buttons, inputs, textarea */
 p,
 span,
 button,
@@ -26,8 +27,7 @@ textarea {
     font-weight: 400;
 }
 
-
-/* Custom scrollbar styling */
+/* Custom scrollbar styling for chat-box (if applicable) */
 #chat-box::-webkit-scrollbar {
     width: 6px;
 }
