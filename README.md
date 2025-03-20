@@ -36,8 +36,6 @@ python -m venv .venv
 .venv/Scripts/activate
 python -m pip install --upgrade pip
 
-# pip install Flask python-dotenv openai Flask-SQLAlchemy requests SQLAlchemy
-
 pip install flask openai python-dotenv flask_sqlalchemy
 
 pip freeze > requirements.txt
