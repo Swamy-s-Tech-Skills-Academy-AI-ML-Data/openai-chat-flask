@@ -1,15 +1,23 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
 {% block content %}
-<div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow">
-    <h2 class="text-xl font-semibold mb-4">Chat with Azure OpenAI 🤖</h2>
-    <div id="chat-box" class="bg-gray-100 h-64 overflow-y-auto p-4 rounded mb-4"></div>
+<div class="max-w-8xl mx-auto bg-white p-6 mt-4 rounded-lg shadow border border-gray-300">
+
+    <h2 class="text-4xl font-semibold mb-4">Chat with Azure OpenAI 🤖</h2>
+
+    <!-- Chat Box -->
+    <div id="chat-box"
+        class="bg-gray-50 h-96 overflow-y-auto p-4 rounded mb-4 border border-gray-500 flex flex-col space-y-2 text-lg">
+    </div>
+
+    <!-- Input & Button -->
     <div class="flex space-x-2">
-        <input id="user-input" type="text" placeholder="Type your message..."
-            class="flex-grow border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:ring-blue-300" />
+        <textarea id="user-input" placeholder="Type your message..."
+            class="flex-grow border border-gray-300 rounded-lg px-3 py-3 h-20 resize-none focus:outline-none focus:ring focus:ring-blue-300 text-lg"></textarea>
         <button id="send-btn"
-            class="bg-blue-600 text-white font-semibold px-4 py-2 rounded hover:bg-blue-700 transition">
-            Send
+            class="bg-blue-600 text-white font-semibold px-4 py-3 rounded-lg hover:bg-blue-700 transition flex flex-col items-center justify-center">
+            <span class="text-lg">📩</span>
+            <span>Send</span>
         </button>
     </div>
 </div>
@@ -19,13 +27,39 @@
     const userInput = document.getElementById("user-input");
     const sendBtn = document.getElementById("send-btn");
 
-    sendBtn.addEventListener("click", async () => {
+    function appendMessage(role, message) {
+        const msgDiv = document.createElement("div");
+        msgDiv.classList.add("flex", "mb-2");
+
+        if (role === "user") {
+            // User message (align right, blue background)
+            msgDiv.classList.add("justify-end");
+            msgDiv.innerHTML = `
+                <div class="bg-blue-600 text-white p-3 rounded-lg shadow max-w-lg rounded-br-none">
+                    <strong>You:</strong> ${message}
+                </div>
+            `;
+        } else {
+            // Bot message (align left, gray background)
+            msgDiv.classList.add("justify-start");
+            msgDiv.innerHTML = `
+                <div class="bg-gray-700 text-white p-3 rounded-lg shadow rounded-bl-none">
+                    <strong>Bot:</strong> ${message}
+                </div>
+            `;
+        }
+
+        chatBox.appendChild(msgDiv);
+        chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll to the latest message
+    }
+
+    async function sendMessage() {
         const message = userInput.value.trim();
         if (!message) return;
 
-        // Display user's message
-        chatBox.innerHTML += `<p class="mb-1"><strong>You:</strong> ${message}</p>`;
+        appendMessage("user", message);
         userInput.value = "";
+        userInput.focus(); // Keep textarea focused after sending
 
         try {
             const res = await fetch("/api/chat", {
@@ -35,13 +69,21 @@
             });
             const data = await res.json();
             if (data.response) {
-                chatBox.innerHTML += `<p class="mb-2"><strong>Bot:</strong> ${data.response}</p>`;
+                appendMessage("bot", data.response);
             } else if (data.error) {
-                chatBox.innerHTML += `<p class="mb-2 text-red-500"><strong>Error:</strong> ${data.error}</p>`;
+                appendMessage("bot", `Error: ${data.error}`);
             }
-            chatBox.scrollTop = chatBox.scrollHeight;
         } catch (error) {
-            chatBox.innerHTML += `<p class="mb-2 text-red-500"><strong>Error:</strong> ${error}</p>`;
+            appendMessage("bot", `Error: ${error}`);
+        }
+    }
+
+    // Event listeners
+    sendBtn.addEventListener("click", sendMessage);
+    userInput.addEventListener("keypress", (event) => {
+        if (event.key === "Enter" && !event.shiftKey) {
+            event.preventDefault();
+            sendMessage();
         }
     });
 </script>
