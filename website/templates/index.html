@@ -11,11 +11,12 @@
 
     <!-- Input & Button -->
     <div class="flex space-x-2">
-        <input id="user-input" type="text" placeholder="Type your message..."
-            class="flex-grow border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:ring-blue-300" />
+        <textarea id="user-input" placeholder="Type your message..."
+            class="flex-grow border border-gray-300 rounded-lg px-3 py-3 h-20 resize-none focus:outline-none focus:ring focus:ring-blue-300"></textarea>
         <button id="send-btn"
-            class="bg-blue-600 text-white font-semibold px-4 py-2 rounded hover:bg-blue-700 transition">
-            Send
+            class="bg-blue-600 text-white font-semibold px-4 py-3 rounded-lg hover:bg-blue-700 transition flex flex-col items-center justify-center">
+            <span class="text-lg">📩</span>
+            <span>Send</span>
         </button>
     </div>
 </div>
@@ -41,7 +42,7 @@
             // Bot message (align left, gray background)
             msgDiv.classList.add("justify-start");
             msgDiv.innerHTML = `
-                <div class="bg-gray-700 text-white p-3 rounded-lg shadow max-w-lg rounded-bl-none">
+                <div class="bg-gray-700 text-white p-3 rounded-lg shadow rounded-bl-none">
                     <strong>Bot:</strong> ${message}
                 </div>
             `;
@@ -57,7 +58,7 @@
 
         appendMessage("user", message);
         userInput.value = "";
-        userInput.focus(); // Keep input field focused after sending
+        userInput.focus(); // Keep textarea focused after sending
 
         try {
             const res = await fetch("/api/chat", {
@@ -79,7 +80,7 @@
     // Event listeners
     sendBtn.addEventListener("click", sendMessage);
     userInput.addEventListener("keypress", (event) => {
-        if (event.key === "Enter") {
+        if (event.key === "Enter" && !event.shiftKey) {
             event.preventDefault();
             sendMessage();
         }
