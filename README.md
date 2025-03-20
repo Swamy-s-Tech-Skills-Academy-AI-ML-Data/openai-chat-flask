@@ -17,7 +17,7 @@ openai-chat-flask/
 │   ├── routes.py           # Blueprint for all routes (views & API endpoints)
 │   ├── models.py           # (Optional) Database models if using SQLAlchemy
 │   ├── static/             # Static files (CSS, JS, images)
-│   │   └── mainpage.css    # Custom CSS (optional)
+│   │   └── globalstyles.css    # Custom CSS (optional)
 │   └── templates/          # HTML templates (Jinja2)
 │       ├── base.html       # Base template with common layout (navbar, footer)
 │       ├── index.html      # Main page template (chat UI)
@@ -35,8 +35,6 @@ pip install virtualenv
 python -m venv .venv
 .venv/Scripts/activate
 python -m pip install --upgrade pip
-
-# pip install Flask python-dotenv openai Flask-SQLAlchemy requests SQLAlchemy
 
 pip install flask openai python-dotenv flask_sqlalchemy
 
