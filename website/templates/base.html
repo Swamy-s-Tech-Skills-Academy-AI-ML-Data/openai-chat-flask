@@ -1,0 +1,42 @@
+<!-- website/templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Chatbot with OpenAI{% endblock %}</title>
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='globalstyles.css') }}">
+</head>
+
+<body class="bg-gray-50 text-gray-900 font-inter">
+    <!-- Navbar -->
+    <nav class="bg-blue-600 text-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <h1 class="text-2xl font-bold">Chatbot with OpenAI</h1>
+            <div class="space-x-4">
+                <a href="/" class="hover:underline">Home</a>
+                <a href="/history" class="hover:underline">Search History</a>
+                <a href="/chatbot" class="hover:underline">Chat Bot</a>
+                <button class="bg-red-500 hover:bg-red-600 px-3 py-1 rounded">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto p-4">
+        {% block content %}
+        <!-- Content goes here -->
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 text-center p-2">
+        © 2025 Chatbot - Built with Flask & OpenAI
+    </footer>
+</body>
+
+</html>
