@@ -2,19 +2,19 @@
 from flask import Blueprint, render_template
 
 # Define the blueprint for views
-views = Blueprint('views', __name__)
+views_blueprint = Blueprint('views', __name__)
 
 
-@views.route("/")
+@views_blueprint.route("/")
 def home():
     return render_template("home.html")
 
 
-@views.route("/stchatbot")
+@views_blueprint.route("/stchatbot")
 def stchatbot():
     return render_template("stchatbot.html")
 
 
-@views.route("/history")
+@views_blueprint.route("/history")
 def history():
     return render_template("history.html")

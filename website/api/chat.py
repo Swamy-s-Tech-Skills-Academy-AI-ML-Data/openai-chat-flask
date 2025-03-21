@@ -4,7 +4,7 @@ import openai
 import os
 
 # Define the blueprint in this module
-api = Blueprint('api', __name__)
+api_chat_blueprint = Blueprint('api', __name__)
 
 # Ensure API key is set
 openai_api_key = os.getenv("OPENAI_API_KEY")
@@ -15,7 +15,7 @@ if not openai_api_key:
 openai.api_key = openai_api_key
 
 
-@api.route("/chat", methods=["POST"])
+@api_chat_blueprint.route("/chat", methods=["POST"])
 def chat():
     data = request.get_json()
 
