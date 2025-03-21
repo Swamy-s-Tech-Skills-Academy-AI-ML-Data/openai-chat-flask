@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
 {% block content %}
-<div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow h-[80vh] overflow-y-auto border border-indigo-200 mt-4">
+<div class="max-w-8xl mx-auto bg-white p-6 rounded-lg shadow h-[80vh] overflow-y-auto border border-indigo-200 mt-4">
     <h2 class="text-4xl font-bold mb-4">Welcome to the Single Turn Chat BOT</h2>
     <p class="mb-4 text-xl">
         This application demonstrates a single-turn chat with Azure OpenAI.
@@ -11,12 +11,26 @@
         <strong>Features:</strong>
     </p>
     <ul class="list-disc list-inside mb-4 text-xl">
+        <li>Home Page</li>
         <li>Single Turn Chat Bot (GPT-based)</li>
-        <li>Search History to revisit previous queries</li>
         <li>Simple, responsive UI</li>
     </ul>
     <p class="mb-4 text-xl">
         Use the navigation bar above to explore the chatbot or view your search history.
     </p>
+    <hr class="my-4 border-t-2 border-indigo-400" />
+
+    <p class="mb-4 text-xl">
+        <strong>Up coming Features:</strong>
+    </p>
+    <ul class="list-disc list-inside mb-4 text-xl">
+        <li>Auth0 Integration</li>
+        <li>Speech Input</li>
+        <li>Multi Turn Chat Bot (GPT-based)</li>
+        <li>Image Generation</li>
+        <li>Code Generation</li>
+        <li>Search History to revisit previous queries</li>
+    </ul>
+
 </div>
 {% endblock %}
