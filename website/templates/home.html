@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow">
+    <h2 class="text-2xl font-bold mb-4">Welcome to the Single Turn Chat BOT</h2>
+    <p class="mb-4">
+        This application demonstrates a single-turn chat with Azure OpenAI.
+        You can ask a question, and it will respond once per query.
+    </p>
+    <p class="mb-4">
+        <strong>Features:</strong>
+    </p>
+    <ul class="list-disc list-inside mb-4">
+        <li>Single Turn Chat Bot (GPT-based)</li>
+        <li>Search History to revisit previous queries</li>
+        <li>Simple, responsive UI</li>
+    </ul>
+    <p class="mb-4">
+        Use the navigation bar above to explore the chatbot or view your search history.
+    </p>
+</div>
+{% endblock %}
