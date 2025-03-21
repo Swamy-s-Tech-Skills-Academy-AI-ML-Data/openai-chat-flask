@@ -33,28 +33,8 @@
 </head>
 
 <body class="flex flex-col min-h-screen bg-gray-50 text-gray-900 font-inter">
-    <!-- Navbar -->
-    <nav class="bg-indigo-400 text-white shadow-md">
-        <div class="container mx-auto px-4 py-2 flex justify-between items-center">
-            <a href="/" class="text-2xl font-bold px-4 py-1 rounded transition-colors duration-200 hover:bg-indigo-500 hover:text-white 
-       {% if request.path == '/' %} active-tab {% endif %}">
-                AI Assistant
-            </a>
-            <div class="space-x-4">
-                <!-- <a href="/stchatbot" class="hover:underline">ST Chat Bot</a> -->
-                <a href="/stchatbot"
-                    class="px-4 py-2 rounded transition-colors duration-200 hover:bg-indigo-500 hover:text-white font-bold {% if request.path == '/stchatbot' %} active-tab {% endif %}">
-                    ST Chat Bot
-                </a>
-                <a href="/history"
-                    class="px-4 py-2 rounded transition-colors duration-200 hover:bg-indigo-500 hover:text-white font-bold {% if request.path == '/history' %} active-tab {% endif %}">
-                    Search History
-                </a>
-                <button
-                    class="bg-purple-400 hover:bg-purple-600 px-3 py-1 rounded transition-colors duration-200 font-bold">Logout</button>
-            </div>
-        </div>
-    </nav>
+    <!-- Include Navbar -->
+    {% include "navbar.html" %}
 
     <!-- Main Content (flex-grow pushes footer down) -->
     <main class="container mx-auto p-4 flex-grow">
@@ -63,10 +43,9 @@
         {% endblock %}
     </main>
 
-    <!-- Sticky Footer -->
-    <footer class="bg-indigo-400 text-white text-center p-1 text-md border-t border-gray-100">
-        © 2025 Chatbot - Built with Flask & OpenAI
-    </footer>
+    <!-- Include Footer -->
+    {% include "footer.html" %}
+
 </body>
 
 </html>
