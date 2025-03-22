@@ -22,9 +22,13 @@ def create_app():
     # Initialize database
     db.init_app(app)
 
-    # Register blueprint(s)
-    from .routes import routes  # Import the blueprint from routes.py
-    app.register_blueprint(routes, url_prefix="/")
+    # Register view routes
+    from .views import views_blueprint
+    app.register_blueprint(views_blueprint, url_prefix="/")
+
+    # Register API routes
+    from .api import api_chat_blueprint
+    app.register_blueprint(api_chat_blueprint, url_prefix="/api")
 
     # Create the database if it doesn't exist
     create_database(app)

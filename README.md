@@ -2,6 +2,10 @@
 
 I am learning creating Chat Bot with Flask from different Video Courses, Books, and Websites
 
+## UI Preview
+
+![UI Preview](./docs/images/SessionFirstLook.PNG)
+
 ## Project Structure
 
 ```text
@@ -41,3 +45,5 @@ pip install flask openai python-dotenv flask_sqlalchemy
 pip freeze > requirements.txt
 pip install -r .\requirements.txt
 ```
+
+---
