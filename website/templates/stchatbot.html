@@ -2,8 +2,7 @@
 {% block title %}Single Turn Chat{% endblock %}
 {% block content %}
 <div class="max-w-8xl mx-auto bg-white p-6 mt-4 rounded-lg shadow border border-indigo-200 h-[80vh] overflow-y-auto">
-
-    <h2 class="text-4xl font-semibold mb-4">Chat with OpenAI 🤖</h2>
+    <h2 class="text-4xl font-bold mb-4">Chat with OpenAI 🤖</h2>
 
     <!-- Chat Box -->
     <div id="chat-box"
@@ -22,6 +21,9 @@
     </div>
 </div>
 
+<!-- Load Marked.js from CDN -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
 <script>
     const chatBox = document.getElementById("chat-box");
     const userInput = document.getElementById("user-input");
@@ -35,16 +37,18 @@
             // User message (align right, blue background)
             msgDiv.classList.add("justify-end");
             msgDiv.innerHTML = `
-                <div class="bg-indigo-200 text-purple text-xl p-3 rounded-lg shadow rounded-br-none">
+                <div class="bg-indigo-200 text-indigo-900 text-xl p-3 rounded-lg shadow rounded-br-none">
                     <strong>👤:</strong> ${message}
                 </div>
             `;
         } else {
             // Bot message (align left, gray background)
             msgDiv.classList.add("justify-start");
+            // Convert Markdown content to HTML using marked
+            const htmlContent = marked.parse(message);
             msgDiv.innerHTML = `
                 <div class="bg-indigo-50 text-indigo-900 text-xl p-3 rounded-lg shadow rounded-bl-none">
-                    <strong>🤖:</strong> ${message}
+                    <strong>🤖:</strong> ${htmlContent}
                 </div>
             `;
         }
@@ -59,7 +63,7 @@
 
         appendMessage("user", message);
         userInput.value = "";
-        userInput.focus(); // Keep textarea focused after sending
+        userInput.focus();
 
         try {
             const res = await fetch("/api/chat", {
