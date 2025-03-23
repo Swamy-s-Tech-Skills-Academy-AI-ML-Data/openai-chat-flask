@@ -10,23 +10,31 @@ I am learning creating Chat Bot with Flask from different Video Courses, Books, 
 
 ```text
 openai-chat-flask/
-│
-├── app.py                  # Main entry point
-├── requirements.txt        # List of dependencies
-├── .env                    # Environment variables (e.g., API keys)
-├── README.md               # Documentation (optional)
-│
-├── website/                # Your Flask package
-│   ├── __init__.py         # Initializes the Flask app, config, and DB
-│   ├── routes.py           # Blueprint for all routes (views & API endpoints)
-│   ├── models.py           # (Optional) Database models if using SQLAlchemy
-│   ├── static/             # Static files (CSS, JS, images)
-│   │   └── globalstyles.css    # Custom CSS (optional)
-│   └── templates/          # HTML templates (Jinja2)
-│       ├── base.html       # Base template with common layout (navbar, footer)
-│       ├── index.html      # Main page template (chat UI)
-│       ├── history.html    # (Optional) Chat history template
-│       └── response_view.html  # (Optional) Response view template
+├── app.py                  # Application entry point
+├── requirements.txt        # Python dependencies
+├── .env                    # Environment variables (e.g., API keys, secret key)
+├── README.md               # Project documentation
+└── website/                # Main Flask package
+    ├── __init__.py         # App factory: creates the Flask app, configures DB, registers blueprints
+    ├── data/               # Database-related code
+    │   ├── __init__.py     # (Optional) Expose models as a package
+    │   └── models.py       # SQLAlchemy models (e.g., ChatHistory)
+    ├── api/                # API endpoints (return JSON responses)
+    │   ├── __init__.py     # Initializes the API blueprint (simply imports blueprint from chat.py)
+    │   └── chat.py         # Defines the chat API route that interacts with OpenAI
+    ├── views/              # View routes (render templates)
+    │   ├── __init__.py     # Initializes the views blueprint (imports blueprint from home.py)
+    │   └── home.py         # Contains routes for Home, ST Chat Bot, and History pages
+    ├── static/             # Static assets (CSS, images, etc.)
+    │   ├── favicon.ico
+    │   └── globalstyles.css
+    └── templates/          # Jinja2 templates
+        ├── base.html       # Base layout (includes navbar and footer via includes)
+        ├── navbar.html     # Navbar HTML (included in base.html)
+        ├── Footer.html     # (Optional) Footer HTML (could be included in base.html)
+        ├── home.html       # Home page (overview of the application)
+        ├── stchatbot.html  # Single Turn Chat Bot page (chat interface)
+        └── history.html    # Search History page (placeholder or chat history)
 ```
 
 ## Project Setup
@@ -34,6 +42,11 @@ openai-chat-flask/
 ```powershell
 python --version
 pip --version
+(.venv) PS D:\STSAALMLDT\openai-chat-flask> python --version
+Python 3.12.5
+(.venv) PS D:\STSAALMLDT\openai-chat-flask> pip --version
+pip 25.0.1 from D:\STSAALMLDT\openai-chat-flask\.venv\Lib\site-packages\pip (python 3.12)
+(.venv) PS D:\STSAALMLDT\openai-chat-flask>
 
 pip install virtualenv
 python -m venv .venv
